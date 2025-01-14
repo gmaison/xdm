@@ -64,7 +64,7 @@ Table of Content
 
 [6.2 Datasources](#datasources)
 
-1. # **Introduction** {#introduction}
+# **Introduction** {#introduction}
 
 This article is designed for all Xano developers seeking a structured approach to development, especially when collaborating in teams. It establishes a set of foundational principles for coding methodology, including best practices for naming conventions, algorithm design, design patterns, and effective teamwork strategies.
 
@@ -72,9 +72,9 @@ I created this guide after observing that many no-code developers often lack cla
 
 While specifically tailored for Xano, the concepts outlined can also be adapted for other platforms and visual coding languages. The methodology draws inspiration from various established coding practices, aiming to provide a stable and effective foundation for professional development within Xano.
 
-2. # **Methodological principles** {#methodological-principles}
+# **Methodological principles** {#methodological-principles}
 
-   1. ## **Functional analysis** {#functional-analysis}
+## **Functional analysis** {#functional-analysis}
 
 Functional analysis is a critical step for defining what to develop while avoiding both under-implementation due to insufficient feature analysis and over-design. Properly designed algorithms help streamline development and ensure clarity before coding begins.
 
@@ -91,32 +91,31 @@ These algorithms must be generated and documented before any implementation. Add
 
 These visual algorithms should serve as a technical reference and must remain synchronized with the implemented code throughout the project lifecycle.
 
-## 
 
-2. ## **Development principles** {#development-principles}
+## **Development principles** {#development-principles}
 
 We’ll keep in mind mainly two development principles:
 
 - Loose coupling  
 - Strong coherence
 
-  1. ### **Fundamental principles** {#fundamental-principles}
+### **Fundamental principles** {#fundamental-principles}
 
 * Loose coupling:  
-  * Components (like functions) have minimal dependencies  
-  * They interact via well-defined interfaces  
-  * Changes to one component have minimal impact on the others  
-  * Improves maintenance and testing  
+	* Components (like functions) have minimal dependencies
+	* They interact via well-defined interfaces  
+	* Changes to one component have minimal impact on the others  
+	* Improves maintenance and testing  
 * Strong coherence:  
-  * The elements of a same component are closely linked  
-  * Single, focused responsibility per element  
-  * Related methods and properties grouped together logically
+	* The elements of a same component are closely linked  
+	* Single, focused responsibility per element  
+	* Related methods and properties grouped together logically
 
-    2. ### **The Framework Way of Thinking** {#the-framework-way-of-thinking}
+### **The Framework Way of Thinking** {#the-framework-way-of-thinking}
 
 To ensure both loose coupling and strong coherence, consider building your application as a framework. This mindset encourages structuring your app into reusable, well-defined components where the core logic is abstracted, while the orchestration layer handles the flow of processes. Thinking in frameworks enhances scalability, simplifies maintenance, and ensures better separation of concerns.
 
-3. ### **When coupling can be relaxed** {#when-coupling-can-be-relaxed}
+### **When coupling can be relaxed** {#when-coupling-can-be-relaxed}
 
 Here are some legitimate situations for stricter coupling:
 
@@ -127,7 +126,7 @@ Here are some legitimate situations for stricter coupling:
 * Framework-specific components  
 * Process orchestration 
 
-  4. ### **Why does it work?**  {#why-does-it-work?}
+### **Why does it work?**  {#why-does-it-work?}
 
 The architecture achieves equilibrium by
 
@@ -137,7 +136,7 @@ The architecture achieves equilibrium by
 * maintaining component reuse  
 * making business processes explicit.
 
-  5. ### **Best practices** {#best-practices}
+### **Best practices** {#best-practices}
 
 * Using dependency injection  
 * Grouping related dependencies  
@@ -154,37 +153,37 @@ This approach creates a clear separation between:
 
 The key idea is that while loose coupling remains a fundamental principle for components, the orchestration layer can legitimately be more tightly coupled because it represents the actual workflows and processes of the business. This creates a pragmatic balance between architectural purity and practical business requirements.
 
-3. ## **Implementation** {#implementation}
+## **Implementation** {#implementation}
 
 A clear and structured implementation phase is crucial for maintaining the integrity of the development process. The following principles aim to ensure that code implementation remains consistent with the design phase while being easy to manage and extend.
 
-1. ### **Principles** {#principles}
+### **Principles** {#principles}
 
 * Follow the algorithm designed and validated during the design stage to avoid unnecessary deviations.  
 * Break down complex tasks by creating sub-functions where appropriate to enhance readability and maintainability.  
 * Use Groups to organize instructions that belong to the same functional block, ensuring a logical structure.  
 * Utilize database element identifiers as parameters instead of passing entire objects. Perform data retrieval using Get Record or Query All Records within the function to ensure only necessary data is processed.
 
-  2. ### **Handling Add-ons** {#handling-add-ons}
+### **Handling Add-ons** {#handling-add-ons}
 
 * If the additional information is a single data point closely related to the main record, use JOINS \+ EVAL to combine the data effectively.  
 * If the additional information consists of multiple records related to the main record (e.g., child records), use Add-ons to manage the data relationship clearly.  
-* These principles ensure that the code remains modular, maintainable, and consistent with the designed architecture, making it easier to debug, extend, and collaborate on across development teams.
+* These principles ensure that the code remains modular, maintainable, and consistent with the designed architecture, making it easier to debug, extend, and collaborate on across   development teams.
 
-4. ## **Analysis \<-\> Implementation** {#analysis-<->-implementation}
+## **Analysis \<-\> Implementation** {#analysis-<->-implementation}
 
 A solid approach to analysis and implementation ensures continuous improvement and effective collaboration between technical and business teams. The following principles highlight the importance of validation and iteration in the development process.
 
-1. ### **Principles** {#principles-1}
+### **Principles** {#principles-1}
 
 * Missing elements in the first version of a solution is acceptable; the process thrives on iterative improvements.  
 * Ensure that any functional analysis of modifications is reviewed and validated by the head of the relevant business team. If the team lead is unavailable, obtain validation from the founders or key decision-makers.  
 * Once the functional analysis is validated, it is essential to update the MIRO diagrams before proceeding with implementation. This ensures the design documentation stays synchronized with the development work.  
 * By maintaining a structured approach to analysis and validation, development remains focused and aligned with business objectives, while reducing the risk of overlooked requirements.
 
-5. ## **Development and Tests** {#development-and-tests}
+## **Development and Tests** {#development-and-tests}
 
-   1. ### **Private Development branch** {#private-development-branch}
+### **Private Development branch** {#private-development-branch}
 
 Principles:
 
@@ -194,11 +193,11 @@ Principles:
 
 Once the developments and tests are passed, you can merge in “Main” branch, and the private development branch can be deleted.
 
-2. ### **“Main” Branch** {#“main”-branch}
+### **“Main” Branch** {#“main”-branch}
 
 Unless you’re in a big hurry, you don’t develop in the “Main” branch. Once a feature is finished and tested, it must be merged into the “Staging” branch.
 
-3. ### **“Staging” branch** {#“staging”-branch}
+### **“Staging” branch** {#“staging”-branch}
 
 Principles:
 
@@ -207,7 +206,7 @@ Principles:
 * If the tests are not conclusive, return to “Main” branch  
 * If the tests are conclusive, production release is requested.
 
-  4. ### **“Production” (live) branch** {#“production”-(live)-branch}
+### **“Production” (live) branch** {#“production”-(live)-branch}
 
 Principles:
 
@@ -221,37 +220,37 @@ Principles:
     * the functions & endpoints modified are merged back to “Production” branch   
     * same in the “Main” & “Staging” branches. Although precautions must be taken not to overwrite some potential modifications.
 
-6. ## **Production release** {#production-release}
+## **Production release** {#production-release}
 
 Principles:
 
 * Deployment in production is planned the week after the end of the staging tests  
 * Each release is numbered
 
-3. # **Nomenclature principles** {#nomenclature-principles}
+# **Nomenclature principles** {#nomenclature-principles}
 
 Consistent and clear naming conventions help maintain code clarity, reduce confusion, and promote collaboration across development teams. The following principles should be adhered to for variables, functions, and triggers.
 
-1. ## **Variables** {#variables}
+## **Variables** {#variables}
 
-   1. ### **Prefixing Conventions:** {#prefixing-conventions:}
+### **Prefixing Conventions:** {#prefixing-conventions:}
 
 * `g` : Global / Environment variables  
 * `p` : Function input parameters  
 * `l` : Local variables
 
-  2. ### **Case Style:** {#case-style:}
+### **Case Style:** {#case-style:}
 
 * Use **camelPascalCase** for variable naming:  
   * Examples: `pIndustryId`, `lCompanyId`
 
-  2. ## **Functions**  {#functions}
+## **Functions**  {#functions}
 
-     1. ### **Case Style:** {#case-style:-1}
+### **Case Style:** {#case-style:-1}
 
 * Use **snake\_case** and **lowercase** for function names.
 
-  2. ### **Naming Pattern:** {#naming-pattern:}
+### **Naming Pattern:** {#naming-pattern:}
 
 * Function names should follow the structure: `[entity/feature/tool/service]_[functional_terms]()`  
 * **Examples**  
@@ -260,133 +259,131 @@ Consistent and clear naming conventions help maintain code clarity, reduce confu
   * `stripe_orch_payment_create()`  
   * `company_db_create()` / `company_db_update()`
 
-    3. ### **Standardized Prefixes:** {#standardized-prefixes:}
+### **Standardized Prefixes:** {#standardized-prefixes:}
 
 * Refer to the section on **Function Types** for more detailed prefix usage.
 
-  4. ### **Conventions:** {#conventions:}
+### **Conventions:** {#conventions:}
 
 * Always end function names with parentheses `()`.
 
-  3. ## **Triggers** {#triggers}
+## **Triggers** {#triggers}
 
-     1. ### **Case Style:** {#case-style:-2}
+### **Case Style:** {#case-style:-2}
 
 * Use **snake\_case** and **lowercase**.
 
-  2. ### **Naming Pattern:** {#naming-pattern:-1}
+### **Naming Pattern:** {#naming-pattern:-1}
 
 * Trigger names should follow the structure: `tg_[table]_[functional_terms]()`  
 * **Examples:**  
   * `tg_property_configuration_set_last_updates()`  
   * `tg_property_create_internal_nickname()`
 
-    3. ### **Comments:** {#comments:}
+### **Comments:** {#comments:}
 
 * Triggers themselves should not perform any operations directly.  
 * Their sole purpose is to call a function with the same name, e.g., `tg_property_create_internal_nickname()` should only call the identically named function.  
 * Always end trigger names with parentheses `()`.  
 * In most cases, Triggers should not process business rules (processed in [orchestrators](#orchestrators)) but just technical operations.
 
-  4. ## **API Endpoints** {#api-endpoints}
+## **API Endpoints** {#api-endpoints}
 
-#### Clear and consistent API design and endpoint naming are essential for a well-structured and maintainable codebase. Each CRUD endpoint, even those for sub-entities, must be able to handle both a single item and an array of items, except on specific and relevant endpoints or functions. Consequently, the functions used within these endpoints must also be capable of processing both single items and arrays of items. 
+Clear and consistent API design and endpoint naming are essential for a well-structured and maintainable codebase. Each CRUD endpoint, even those for sub-entities, must be able to handle both a single item and an array of items, except on specific and relevant endpoints or functions. Consequently, the functions used within these endpoints must also be capable of processing both single items and arrays of items. 
 
-#### The following conventions ensure clarity across all API interactions.
+The following conventions ensure clarity across all API interactions.
 
-1. ### **Endpoint Naming Conventions** {#endpoint-naming-conventions}
+### **Endpoint Naming Conventions** {#endpoint-naming-conventions}
 
-   1. #### Standard CRUD Operations
+#### Standard CRUD Operations
 
-* #### `POST [entity]`: Create a single or array of new records for the specified entity.
+* `POST [entity]`: Create a single or array of new records for the specified entity.
 
-* #### `POST [entity]/search`: Search for a list of items based on filters.
+* `POST [entity]/search`: Search for a list of items based on filters.
 
-* #### `POST [entity]/search/<name>`: Perform a specific search, such as dropdown suggestions.
+* `POST [entity]/search/<name>`: Perform a specific search, such as dropdown suggestions.
 
-* #### `GET [entity]/{id}`: Retrieve a unique item using its identifier.
+* `GET [entity]/{id}`: Retrieve a unique item using its identifier.
 
-* #### `PATCH [entity]`: Update a single or array of items
+* `PATCH [entity]`: Update a single or array of items
 
-* #### `DELETE [entity]?id=[]`: Delete a single or array of items
+* `DELETE [entity]?id=[]`: Delete a single or array of items
 
-  2. #### Sub-Entity Management:
+#### Sub-Entity Management
 
-* #### `POST [entity]/{id}/sub_entity`: Create a single or array of sub-entities linked to the main entity.
+* `POST [entity]/{id}/sub_entity`: Create a single or array of sub-entities linked to the main entity.
 
-* #### `PATCH [entity]/{id}/sub_entity`: Update a single or array of specific sub-entities linked to the main entity.
+* `PATCH [entity]/{id}/sub_entity`: Update a single or array of specific sub-entities linked to the main entity.
 
-* #### `DELETE [entity]/{id}/sub_entity?id=[]`: Delete a single or array of specific sub-entities linked to the main entity.
+* `DELETE [entity]/{id}/sub_entity?id=[]`: Delete a single or array of specific sub-entities linked to the main entity.
 
-* #### `GET [entity]/{id}/sub_entity/{id}`: Retrieve a unique sub-entity related to the main entity.
+* `GET [entity]/{id}/sub_entity/{id}`: Retrieve a unique sub-entity related to the main entity.
 
-  3. #### Custom Functional Calls:
+#### Custom Functional Calls
 
-* #### `POST [entity]/rpc/[function]`: Run a specific function related to the entity.
+* `POST [entity]/rpc/[function]`: Run a specific function related to the entity.
 
-  4. #### General Naming Conventions:
+#### General Naming Conventions
 
-* #### Use **snake\_case** for multi-word entities and functions.
+* Use **snake\_case** for multi-word entities and functions.
 
-* #### Maintain a consistent naming pattern for endpoints and sub-entities.
+* Maintain a consistent naming pattern for endpoints and sub-entities.
 
-  2. ### **Parameters** {#parameters}
+### **Parameters** {#parameters}
 
-     1. #### Naming and Case:
+#### Naming and Case:
 
-* #### Use **snake\_case** and lowercase.
+* Use **snake\_case** and lowercase.
 
-* #### Ensure parameter names clearly describe the data they represent.
+* Ensure parameter names clearly describe the data they represent.
 
-* #### Examples:
+* Examples:
 
-  * #### `company_id`, `user_id`, `booking_start_date`, `invoice_amount_novat`
+  * `company_id`, `user_id`, `booking_start_date`, `invoice_amount_novat`
 
-    2. #### General Comments:
+#### General Comments:
 
-* #### By default, there is no predefined input for an endpoint. Use the `Get All Raw Inputs` function to access all data.
+* By default, there is no predefined input for an endpoint. Use the `Get All Raw Inputs` function to access all data.
 
-* #### Depending on the frontend tool being used (e.g., Weweb), it may be necessary to declare a JSON input parameter to manage all transmitted data. The JSON content should be generated on the frontend and passed to the backend as a single dynamic JSON object. This approach helps maintain consistency across versions, preventing the need to redefine the endpoint structure on either Xano or the frontend tool, as the payload format remains flexible and adaptable.
+* Depending on the frontend tool being used (e.g., Weweb), it may be necessary to declare a JSON input parameter to manage all transmitted data. The JSON content should be generated on the frontend and passed to the backend as a single dynamic JSON object. This approach helps maintain consistency across versions, preventing the need to redefine the endpoint structure on either Xano or the frontend tool, as the payload format remains flexible and adaptable.
 
-* #### Some parameters may be explicitly declared within the endpoint path.
+* Some parameters may be explicitly declared within the endpoint path.
 
-  3. ### **Error Handling** {#error-handling}
+### **Error Handling** {#error-handling}
 
-#### Proper error handling is critical for maintaining data integrity and a stable application.
-
-#### **Guidelines**
-
-* #### If a required parameter is missing or invalid, terminate the process and return an error message.
-
-* #### Enclose the entire process in a database transaction for error-prone endpoints. If an error occurs, the transaction rollback prevents database corruption.
-
-* #### If logging errors, use an internal endpoint call that is not affected by the transaction rollback.
-
-  4. ### **Response Handling** {#response-handling}
-
-#### Consistent response management improves the reliability of API interactions.
+Proper error handling is critical for maintaining data integrity and a stable application.
 
 #### **Guidelines**
 
-* #### All endpoints should return a payload, except for `DELETE` endpoints where a payload may not be necessary.
+* If a required parameter is missing or invalid, terminate the process and return an error message.
 
-* #### For search results (lists/arrays), the results should always be paginated. The endpoint must accept and handle pagination parameters.
+* Enclose the entire process in a database transaction for error-prone endpoints. If an error occurs, the transaction rollback prevents database corruption.
 
-* #### For bulk additions or patches, pagination is not required.
+* If logging errors, use an internal endpoint call that is not affected by the transaction rollback.
 
-* #### If a search yields no results, an empty list is acceptable without triggering a `NOT_FOUND` error.
+### **Response Handling** {#response-handling}
 
-* #### If a specific `GET` request targets an expected record but it’s not found, a `NOT_FOUND` error should be returned.
+Consistent response management improves the reliability of API interactions.
 
-#### 
+#### **Guidelines**
 
-5. ## **Database schema** {#database-schema}
+* All endpoints should return a payload, except for `DELETE` endpoints where a payload may not be necessary.
+
+* For search results (lists/arrays), the results should always be paginated. The endpoint must accept and handle pagination parameters.
+
+* For bulk additions or patches, pagination is not required.
+
+* If a search yields no results, an empty list is acceptable without triggering a `NOT_FOUND` error.
+
+* If a specific `GET` request targets an expected record but it’s not found, a `NOT_FOUND` error should be returned.
+
+## **Database schema** {#database-schema}
 
 A consistent and clear database schema ensures data integrity and simplifies development and collaboration across teams. The following conventions should be applied when designing tables, fields, and enumerations in the database.
 
-1. ### **Tables** {#tables}
+### **Tables** {#tables}
 
-   1. #### Prefix convention:
+#### Prefix convention:
 
 * Use prefixes only for **non-functional** entities:  
   * **Option Sets:** `os_industry`  
@@ -394,22 +391,22 @@ A consistent and clear database schema ensures data integrity and simplifies dev
 * **Functional entities** should be represented by their actual name in **plural form**:  
   * Examples: `invoices`, `invoice_lines`, `companies`, `users`
 
-    2. #### Case Style:
+#### Case Style:
 
 * Use **snake\_case**.  
 * Use **lowercase** exclusively.
 
-  2. ### **Fields** {#fields}
+### **Fields** {#fields}
 
-     1. #### Prefixing Convention:
+#### Prefixing Convention:
 
-* #### Field names should use a **3, 4 or 5-letter prefix** to indicate the table context:
+* Field names should use a **3, 4 or 5-letter prefix** to indicate the table context:
 
-  * #### **Companies:** `cny_name`, `cny_city`
+  * **Companies:** `cny_name`, `cny_city`
 
-  * #### **Invoices:** `inv_number`, `inv_date`
+  * **Invoices:** `inv_number`, `inv_date`
 
-  * #### **Products:** `prod_reference`, `prod_name`
+  * **Products:** `prod_reference`, `prod_name`
 
 * Comments:
 
@@ -417,34 +414,31 @@ A consistent and clear database schema ensures data integrity and simplifies dev
 
   * Table Ids should always be integer. If you want to secure your entities by providing a uuid as an identifier, create a second column with uuid type, create a unique index on this column and in the \_db\_create() function for this table, create and set this column value. It should not be handled in triggers, as triggers execution can be delayed **after** the the **add record** or **bulk add record** functions are returned (with an empty uuid field).
 
-    2. #### Case Style:
+#### Case Style:
 
-* #### Use **snake\_case**.
+* Use **snake\_case**.
 
-* #### Use **lowercase** exclusively.
+* Use **lowercase** exclusively.
 
-3. ### **Enums (Enumerations)** {#enums-(enumerations)}
+### **Enums (Enumerations)** {#enums-(enumerations)}
 
-   1. #### Case Style:
+#### Case Style:
 
-* #### Use **snake\_case** for the enum name.
+* Use **snake\_case** for the enum name.
 
-* #### Use **UPPERCASE** for enum values as they are considered constants.
+* Use **UPPERCASE** for enum values as they are considered constants.
 
 * Enums should be consistently formatted to ensure readability and avoid ambiguity
 
-#### Example:
+Example:
 
 * ENUM: order\_status  
   * PENDING  
   * COMPLETED  
   * CANCELED
 
-#### 
 
-#### 
-
-4. # **Function types** {#function-types}
+# **Function types** {#function-types}
 
 It exists different types of functions:
 
@@ -456,7 +450,7 @@ It exists different types of functions:
 * validators  
 * errors
 
-  1. ## **Apicalls** {#apicalls}
+## **Apicalls** {#apicalls}
 
 **Apicalls (apicall\_)** have a well-defined purpose: they act as a transport layer for a service not managed by the application.
 
@@ -474,7 +468,7 @@ What they must not do
 * they must not handle errors in the API call response (HTTP 4xx, 5xx, etc. errors)  
 * they must not contain any functional logic other than that relating to this transport layer. For example, if the definition of the API call is stored in a database, it will be able to access the elements of this definition in the database.
 
-2. ## **Helpers** {#helpers}
+## **Helpers** {#helpers}
 
 **Helpers (helper\_)** are functions that perform specific tasks and are reusable. Their purpose is to simplify sometimes complex tasks and reduce code duplication. This makes the code easier to read and maintain. This is the principle of weak coupling.
 
@@ -491,7 +485,7 @@ What they must not do:
 * they must not access the database \- except if they need database information to perform their task  
 * they must not handle complex error scenarios
 
-  3. ## **DBs** {#dbs}
+## **DBs** {#dbs}
 
 dbs (\_db\_) are functions that only manage access to database data. They perform direct data access operations. 
 
@@ -506,7 +500,7 @@ What they must not do:
 * They must not transform the data  
 * They must not contain any business logic
 
-4. ## **Validators** {#validators}
+## **Validators** {#validators}
 
 **Validators (\_validator\_)** are functions that validate specific rules. They can validate rules concerning inputs (from endpoints, DAOs, orchestrators, etc.), authentication or business logic.
 
@@ -525,7 +519,7 @@ What they must not do
 
 Note: For an input validator, it’s better to handle an action like CREATE/UPDATE/DELETE, as a second input. So there is only one input validator, which is easier to maintain.
 
-5. ## **Orchestrators** {#orchestrators}
+## **Orchestrators** {#orchestrators}
 
 **Orchestrators (\_orch\_)** are the functions at the heart of the software platform. They implement the business rules and logic. Each of these functions is specific to a business rule.
 
@@ -543,7 +537,7 @@ What they must not do
 * they must not implement low-level functions (those contained in wrappers or helpers)  
 * They must not integrate data validation (contained in validators, but contain validators)
 
-6. ## **Services** {#services}
+## **Services** {#services}
 
 Services (service\_) are functions that act as orchestrators for services requiring the orchestration of several lower-level functions. These service functions are primarily technical functions.
 
@@ -558,7 +552,7 @@ What they must not do
 
 * they must not implement business rules and logic
 
-  7. ## **Errors** {#errors}
+## **Errors** {#errors}
 
 **Errors (error\_ or \_error\_)** are functions that handle generic or specific errors. 
 
