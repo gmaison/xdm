@@ -537,7 +537,7 @@ What they must not do
 * they must not implement low-level functions (those contained in wrappers or helpers)  
 * They must not integrate data validation (contained in validators, but contain validators)
 
-## **Services** {#services}
+## **Services** 
 
 Services (service\_) are functions that act as orchestrators for services requiring the orchestration of several lower-level functions. These service functions are primarily technical functions.
 
