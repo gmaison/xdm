@@ -4,27 +4,25 @@
 
 Initiated by: 	Guillaume Maison (guillaume@guillaumemaison.fr) (01/14/2025)
 
-**SUMMARY**
-
-Table of Content
+# **Table of Content**
 
 [1 Introduction](#introduction)
 
 [2 Methodological principles](#methodological-principles)
 
-[2.1 Functional analysis](#functional-analysis)
+&nbsp;&nbsp;&nbsp;[2.1 Functional analysis](#functional-analysis)
 
-[2.2 Development principles](#development-principles)
+&nbsp;&nbsp;&nbsp;[2.2 Development principles](#development-principles)
 
-[2.3 Implementation](#implementation)
+&nbsp;&nbsp;&nbsp;[2.3 Implementation](#implementation)
 
-[2.4 Analysis \<-\> Implementation](#analysis-\<-\>-implementation)
+&nbsp;&nbsp;&nbsp;[2.4 Analysis \<-\> Implementation](#analysis-\<-\>-implementation)
 
-[2.5 Development and Tests](#development-and-tests)
+&nbsp;&nbsp;&nbsp;[2.5 Development and Tests](#development-and-tests)
 
-[2.6 Production release](#production-release)
+&nbsp;&nbsp;&nbsp;[2.6 Production release](#production-release)
 
-[**3 Nomenclature principles**](#nomenclature-principles)
+[3 Nomenclature principles](#nomenclature-principles)
 
 [3.1 Variables](#variables)
 
@@ -36,7 +34,7 @@ Table of Content
 
 [3.5 Database schema](#database-schema)
 
-[**4 Function types**](#function-types)
+[4 Function types](#function-types)
 
 [4.1 Apicalls](#apicalls)
 
