@@ -1,8 +1,8 @@
 
 
-**Development Principles & Methodology with Xano**
+# **Development Principles & Methodology with Xano**
 
-Written by: 	Guillaume Maison (guillaume@guillaumemaison.fr)
+Initiated by: 	Guillaume Maison (guillaume@guillaumemaison.fr) (01/14/2025)
 
 **SUMMARY**
 
