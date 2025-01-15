@@ -1,6 +1,7 @@
 <p align="center">
 <img src="medias/xanologo.jpg" alt="Logo Xano">
 </p>
+
 # Xano Development Methodology Repository
 
 Welcome to the Xano Development Methodology repository. This project explores the principles of effective software development methodologies for Xano.
