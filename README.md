@@ -1,6 +1,6 @@
-# Development Methodology Repository
+# Xano Development Methodology Repository
 
-Welcome to the Development Methodology repository. This project explores the principles of effective software development methodologies.
+Welcome to the Xano Development Methodology repository. This project explores the principles of effective software development methodologies for Xano.
 
 ## How to Contribute
 1. Read the [Xano Development Methodology.md](https://github.com/gmaison/xdm/blob/main/Xano%20Development%20Methodology.md).
