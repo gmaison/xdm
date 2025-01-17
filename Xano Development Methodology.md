@@ -2,6 +2,8 @@
 
 # **Development Principles & Methodology with Xano**
 
+a Xano Development Methodology
+
 Initiated by: 	Guillaume Maison (guillaume@guillaumemaison.fr) (01/14/2025)
 
 1. [**Introduction**](#introduction)
