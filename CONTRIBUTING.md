@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-Thank you for contributing to the **Development Methodology** project! Here's how you can help improve this article:
+Thank you for contributing to the **Xano Development Methodology** project! Here's how you can help improve this article:
 
 ## Feedback and Discussions
 - Use **Issues** to provide feedback or ask questions.
