@@ -48,8 +48,6 @@ Initiated by: 	Guillaume Maison (guillaume@guillaumemaison.fr) (01/14/2025)
 		1. [**Parameters**](#parameters)
 			1. [Naming and Case:](#naming-and-case)
 			1. [General Comments:](#general-comments)
-		1. [**Response Handling**](#response-handling)
-			1. [**Guidelines**](#guidelines)
 	1. [**Database schema**](#database-schema)
 		1. [**Tables**](#tables)
 			1. [Prefix convention:](#prefix-convention)
@@ -73,6 +71,8 @@ Initiated by: 	Guillaume Maison (guillaume@guillaumemaison.fr) (01/14/2025)
 		1. [**Handling array of items or lists**](#handling-array-of-items-or-lists)
 		1. [**Facade**](#facade)
 	1. [**Error Handling**](#error-handling)
+		1. [**Guidelines**](#guidelines)
+	1. [**Response Handling**](#response-handling)
 		1. [**Guidelines**](#guidelines)
 	1. [**Endpoint generic design pattern**](#endpoint-generic-design-pattern)
 
@@ -360,22 +360,6 @@ The following conventions ensure clarity across all API interactions.
 
 * Some parameters may be explicitly declared within the endpoint path.
 
-#### **Response Handling**
-
-Consistent response management improves the reliability of API interactions.
-
-##### **Guidelines**
-
-* All endpoints should return a payload, except for `DELETE` endpoints where a payload may not be necessary.
-
-* For search results (lists/arrays), the results should always be paginated. The endpoint must accept and handle pagination parameters.
-
-* For bulk additions or patches, pagination is not required.
-
-* If a search yields no results, an empty list is acceptable without triggering a `NOT_FOUND` error.
-
-* If a specific `GET` request targets an expected record but it’s not found, a `NOT_FOUND` error should be returned.
-
 ### **Database schema**
 
 A consistent and clear database schema ensures data integrity and simplifies development and collaboration across teams. The following conventions should be applied when designing tables, fields, and enumerations in the database.
@@ -594,6 +578,19 @@ Proper error handling is essential for preserving data integrity and maintaining
 - **Missing or Invalid Parameters:** If a required parameter is missing or invalid, terminate the process and return an error message immediately.
 - **Database Transactions:** For endpoints prone to errors, wrap the entire process in a transaction. This way, if an error occurs, the transaction rollback prevents data corruption.
 - **Error Logging:** Use an internal endpoint call—unaffected by transaction rollbacks—to log errors.
+### **Response Handling**
+
+Consistent response management improves the reliability of API interactions.
+
+#### **Guidelines**
+
+* All endpoints should return a payload, except for `DELETE` endpoints where a payload may not be necessary. For DELETE endpoints, you can either return `null`, deleted ids or true/false, depending on deletion result.
+
+* For search results (lists/arrays), the results should always be paginated. The endpoint must accept and handle pagination parameters. In some cases, especially param tables with few items, pagination is not mandatory.
+
+* For bulk additions or patches, pagination in resultsets is not required.
+
+* If a search yields no results, an empty list is acceptable without triggering a `NOT_FOUND` error. An empty search is not an error. Except if a specific `GET` request targets an expected record but it’s not found, a `NOT_FOUND` error should be returned.
 
 ### **Endpoint generic design pattern**
 
