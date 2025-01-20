@@ -185,7 +185,7 @@ A clear and structured implementation phase is crucial for maintaining the integ
 
 A solid approach to analysis and implementation ensures continuous improvement and effective collaboration between technical and business teams. The following principles highlight the importance of validation and iteration in the development process.
 
-#### **Principles** {#principles-1}
+#### **Principles**
 
 * Missing elements in the first version of a solution is acceptable; the process thrives on iterative improvements.  
 * Ensure that any functional analysis of modifications is reviewed and validated by the head of the relevant business team. If the team lead is unavailable, obtain validation from the founders or key decision-makers.  
@@ -597,10 +597,12 @@ Consistent response management improves the reliability of API interactions.
 * Endpoint  
   * calls an \_orch\_() function  
     * transform input parameter as an array  
-    * calls for \*\_validator\_\*() functions  
-    * proceeds to business data operations & manipulations according to functional rules  
+    * calls for one or many \*\_validator\_\*() functions  
+	    * for each validator function, handle error codes
+    * proceeds to business data operations & manipulations according to functional rules prior to db operations (through orchestrators)
     * calls one or more \*\_db\_\*() functions  
       * does a bulk operation  
+    * proceeds to business data operations & manipulations according to functional rules after db operations (through orchestrators)
     * calls \*\_db\_select() as a result
 
 # **Workspace configuration**
