@@ -19,3 +19,6 @@ While specifically tailored for Xano, the concepts outlined can also be adapted 
 4. Suggest edits using [Pull Requests](https://github.com/gmaison/xdm/pulls).
 
 Thank you for participating!
+
+## Contributors
+* Creator and Coordinator: [Guillaume Maison](https://www.linkedin.com/in/gmaison/)
