@@ -85,6 +85,12 @@ I created this guide after observing that many no-code developers often lack cla
 While specifically tailored for Xano, the concepts outlined can also be adapted for other platforms and visual coding languages. The methodology draws inspiration from various established coding practices, aiming to provide a stable and effective foundation for professional development within Xano.
 
 ## **Methodological principles** 
+1. [**Functional analysis**](#functional-analysis)
+1. [**Development principles**](#development-principles)
+1. [**Implementation**](#implementation)
+1. [**Analysis \<-\> Implementation**](#analysis-%5C-%5C-implementation)
+1. [**Development and Tests**](#development-and-tests)
+1. [**Production release**](#production-release)
 
 ### **Functional analysis** 
 
@@ -241,6 +247,11 @@ Principles:
 ## **Nomenclature principles** 
 
 Consistent and clear naming conventions help maintain code clarity, reduce confusion, and promote collaboration across development teams. The following principles should be adhered to for variables, functions, and triggers.
+1. [**Variables**](#variables)
+1. [**Functions**](#functions)
+1. [**Triggers**](#triggers)
+1. [**API Endpoints**](#api-endpoints)
+1. [**Database schema**](#database-schema)
 
 ### **Variables** 
 
@@ -309,25 +320,17 @@ The following conventions ensure clarity across all API interactions.
 ##### Standard CRUD Operations
 
 * `POST [entity]`: Create a single or array of new records for the specified entity.
-
 * `POST [entity]/search`: Search for a list of items based on filters.
-
 * `POST [entity]/search/<name>`: Perform a specific search, such as dropdown suggestions.
-
 * `GET [entity]/{id}`: Retrieve a unique item using its identifier.
-
 * `PATCH [entity]`: Update a single or array of items
-
 * `DELETE [entity]?id=[]`: Delete a single or array of items
 
 ##### Sub-Entity Management
 
 * `POST [entity]/{id}/sub_entities`: Create a single or array of sub-entities linked to the main entity.
-
 * `PATCH [entity]/{id}/sub_entities`: Update a single or array of specific sub-entities linked to the main entity.
-
 * `DELETE [entity]/{id}/sub_entity?id=[]`: Delete a single or array of specific sub-entities linked to the main entity.
-
 * `GET [entity]/{id}/sub_entity/{id}`: Retrieve a unique sub-entity related to the main entity.
 
 ##### Custom Functional Calls
@@ -337,19 +340,26 @@ The following conventions ensure clarity across all API interactions.
 ##### General Naming Conventions
 
 * Use **snake\_case** for multi-word entities and functions.
-
 * Maintain a consistent naming pattern for endpoints and sub-entities.
+
+##### Examples
+* `POST /companies`: adds one or many companies
+* `PATCH /companies`: patches one or many companies. 
+* `GET /companies/{company_id}`: retrieves one company 
+* `POST /companies/search`: retrieves a list of companies based on filter criterias
+* `DELETE /companies?company_id=[id,id,id]`: deletes one or more companies. In that case, the url parameter `company_id` is a single or array of company_ids
+* `POST /companies/{company_id}/addresses`: adds one or many addresses to the company
+* `POST /companies/{company_id}/addresses`: adds one or many addresses to the company
+* `POST /companies/rpc/check_completion`: checks that data is complete for companies
+* `POST /companies/{company_id}/rpc/check_completion`: checks that data is complete for the company
 
 #### **Parameters**
 
 ##### Naming and Case:
 
 * Use **snake\_case** and lowercase.
-
 * Ensure parameter names clearly describe the data they represent.
-
 * Examples:
-
   * `company_id`, `user_id`, `booking_start_date`, `invoice_amount_novat`
 
 ##### General Comments:
@@ -386,30 +396,24 @@ A consistent and clear database schema ensures data integrity and simplifies dev
 * Field names should use a **3, 4 or 5-letter prefix** to indicate the table context:
 
   * **Companies:** `cny_name`, `cny_city`
-
   * **Invoices:** `inv_number`, `inv_date`
-
   * **Products:** `prod_reference`, `prod_name`
 
 ##### Comments
 
   * Using prefixes for field naming is a convenient way to prevent confusion between identical field names from different tables.
-
   * Table Ids should always be integer. If you want to secure your entities by providing a uuid as an identifier, create a second column with uuid type, create a unique index on this column and in the \_db\_create() function for this table, create and set this column value. It should not be handled in triggers, as triggers execution can be delayed **after** the the **add record** or **bulk add record** functions are returned (with an empty uuid field).
 
 ##### Case Style
 
 * Use **snake\_case**.
-
 * Use **lowercase** exclusively.
 
 #### **Enums (Enumerations)**
 ##### Case Style:
 
 * Use **snake\_case** for the enum name.
-
 * Use **UPPERCASE** for enum values as they are considered constants.
-
 * Enums should be consistently formatted to ensure readability and avoid ambiguity
 
 Example:
@@ -423,13 +427,13 @@ Example:
 
 It exists different types of functions:
 
-* apicalls  
-* services  
-* helpers  
-* dbs  
-* orchestrators  
-* validators  
-* errors
+1. [**Apicalls**](#apicalls)
+1. [**Helpers**](#helpers)
+1. [**DBs**](#dbs)
+1. [**Validators**](#validators)
+1. [**Orchestrators**](#orchestrators)
+1. [**Services**](#services)
+1. [**Errors**](#errors)
 
 ### **Apicalls**
 
@@ -551,6 +555,12 @@ What they must not do:
 * They must not expose sensitive information
 
 ## **Design Patterns**
+In software development, design patterns provide a structured approach to solving common problems, ensuring code that is efficient, scalable, and maintainable. This chapter delves into essential design patterns and best practices for managing APIs, with a focus on handling data, error management, and response consistency.
+
+1. [**Principles**](#principles)
+1. [**Error Handling**](#error-handling)
+1. [**Response Handling**](#response-handling)
+1. [**Endpoint generic design pattern**](#endpoint-generic-design-pattern)
 
 ### **Principles**
 
@@ -585,11 +595,8 @@ Consistent response management improves the reliability of API interactions.
 #### **Guidelines**
 
 * All endpoints should return a payload, except for `DELETE` endpoints where a payload may not be necessary. For DELETE endpoints, you can either return `null`, deleted ids or true/false, depending on deletion result.
-
 * For search results (lists/arrays), the results should always be paginated. The endpoint must accept and handle pagination parameters. In some cases, especially param tables with few items, pagination is not mandatory.
-
 * For bulk additions or patches, pagination in resultsets is not required.
-
 * If a search yields no results, an empty list is acceptable without triggering a `NOT_FOUND` error. An empty search is not an error. Except if a specific `GET` request targets an expected record but it’s not found, a `NOT_FOUND` error should be returned.
 
 ### **Endpoint generic design pattern**
