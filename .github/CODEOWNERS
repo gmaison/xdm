@@ -1,2 +1,2 @@
 # CODEOWNERS ensures certain people must review changes for these files:
-Xano\ Development\ Methodology.md @gmaison
+* @gmaison
