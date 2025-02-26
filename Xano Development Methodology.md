@@ -30,7 +30,7 @@ I hope you'll enjoy it.
 
 ### Functional analysis 
 
-Functional analysis is a critical step for defining what to develop while avoiding both under-implementation due to insufficient feature analysis and over-design. Properly designed algorithms help streamline development and ensure clarity before coding begins.
+Functional analysis is a critical step for defining what to develop while avoiding both under-implementation due to insufficient feature analysis and over-design. Properly designed algorithms help streamline development and ensure clarity before coding begins. 
 
 Algorithms should be visually designed and prototyped before implementation. I recommend using MIRO for this purpose, as it provides a clear way to build and visualize the sequence of instructions. But any other diagram flow editor tool is good.
 
