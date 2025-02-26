@@ -18,13 +18,12 @@ I created this guide after observing that many no-code developers often lack cla
 While specifically tailored for Xano, the concepts outlined can also be adapted for other platforms and visual coding languages. The methodology draws inspiration from various established coding practices, aiming to provide a stable and effective foundation for professional development within Xano.
 
 ## Methodological principles 
-1. [**Functional analysis**](#functional-analysis)
-1. [**Development principles**](#development-principles)
-1. [**Implementation**](#implementation)
-1. [**Analysis \<-\> Implementation**](#analysis-%5C-%5C-implementation)
-1. [**Development and Tests**](#development-and-tests)
-1. [**Production release**](#production-release)
-
+1. [Functional analysis](#functional-analysis)
+2. [Development principles](#development-principles)
+3. [Implementation](#implementation)
+4. [Analysis \<-\> Implementation](#analysis-%5C-%5C-implementation)
+5. [Development and Tests](#development-and-tests)
+6. [Production release](#production-release)
 ### Functional analysis 
 
 Functional analysis is a critical step for defining what to develop while avoiding both under-implementation due to insufficient feature analysis and over-design. Properly designed algorithms help streamline development and ensure clarity before coding begins.
@@ -180,11 +179,11 @@ Principles:
 ## Nomenclature principles
 
 Consistent and clear naming conventions help maintain code clarity, reduce confusion, and promote collaboration across development teams. The following principles should be adhered to for variables, functions, and triggers.
-1. [**Variables**](#variables)
-1. [**Functions**](#functions)
-1. [**Triggers**](#triggers)
-1. [**API Endpoints**](#api-endpoints)
-1. [**Database schema**](#database-schema)
+1. [Variables](#variables)
+2. [Functions](#functions)
+3. [Triggers](#triggers)
+4. [API Endpoints](#api-endpoints)
+5. [Database schema](#database-schema)
 
 ### Variables
 
@@ -360,13 +359,13 @@ Example:
 
 It exists different types of functions:
 
-1. [**Apicalls**](#apicalls)
-1. [**Helpers**](#helpers)
-1. [**DBs**](#dbs)
-1. [**Validators**](#validators)
-1. [**Orchestrators**](#orchestrators)
-1. [**Services**](#services)
-1. [**Errors**](#errors)
+1. [**Apicalls**](#apicalls) 
+2. [**Helpers**](#helpers)
+3. [**DBs**](#dbs)
+4. [**Validators**](#validators)
+5. [**Orchestrators**](#orchestrators)
+6. [**Services**](#services)
+7. [**Errors**](#errors)
 
 ### Apicalls
 
@@ -491,9 +490,9 @@ What they must not do:
 In software development, design patterns provide a structured approach to solving common problems, ensuring code that is efficient, scalable, and maintainable. This chapter delves into essential design patterns and best practices for managing APIs, with a focus on handling data, error management, and response consistency.
 
 1. [**Principles**](#principles)
-1. [**Error Handling**](#error-handling)
-1. [**Response Handling**](#response-handling)
-1. [**Endpoint generic design pattern**](#endpoint-generic-design-pattern)
+2. [**Error Handling**](#error-handling)
+3. [**Response Handling**](#response-handling)
+4. [**Endpoint generic design pattern **](#endpoint-generic-design-pattern)
 
 ### Principles
 
