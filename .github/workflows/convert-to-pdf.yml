@@ -1,0 +1,16 @@
+name: Convert to PDF
+on:
+  push:
+    branches: [ main ]
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: docker://pandoc/latex:2.9
+      with:
+        args: "Xano\ Development\ Methodology.md -o Xano\ Development\ Methodology.pdf"
+    - uses: actions/upload-artifact@v3
+      with:
+        name: PDF
+        path: Xano\ Development\ Methodology.pdf
