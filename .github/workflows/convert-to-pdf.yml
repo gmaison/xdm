@@ -119,12 +119,19 @@ jobs:
             -o "$OUTPUT_PDF" \
             --pdf-engine=xelatex \
             --toc \
+            --toc-depth=3 \
+            --highlight-style=tango \
             --variable=colorlinks=true \
             --variable=linkcolor=blue \
+            --variable=urlcolor=blue \
+            --variable=toccolor=blue \
+            --variable=citecolor=blue \
             --variable=geometry:margin=1in \
             --variable=mainfont="DejaVu Serif" \
+            --variable=sansfont="DejaVu Sans" \
+            --variable=monofont="DejaVu Sans Mono" \
+            --variable=fontsize=11pt \
             --css=custom.css
-
       - name: Create Pull Request
         if: steps.changed_files.outputs.files != '[]'
         uses: peter-evans/create-pull-request@v5
