@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'Xano Development Methodology.md'  # Replace with the path to your specific markdown file
+      - 'Xano Development Methodology.md'
 
 jobs:
   convert_md_to_pdf:
@@ -15,22 +15,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
         with:
-          node-version: '16'
+          pandoc-version: '2.19.2'
       
-      - name: Install md-to-pdf
-        run: npm install -g md-to-pdf
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-xetex texlive-fonts-recommended texlive-plain-generic
       
       - name: Convert Markdown to PDF
         run: |
-          md-to-pdf "Xano Development Methodology.md"  # Replace with your markdown file path
+          pandoc "Xano Development Methodology.md" -o "Xano Development Methodology.pdf" --pdf-engine=xelatex
       
       - name: Commit and push PDF
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add "Xano Development Methodology.pdf"   # Replace with the path where the PDF is generated
+          git add "Xano Development Methodology.pdf"
           git commit -m "Convert markdown to PDF" || echo "No changes to commit"
           git push
