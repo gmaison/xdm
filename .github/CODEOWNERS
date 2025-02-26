@@ -1,2 +1,4 @@
 # CODEOWNERS ensures certain people must review changes for these files:
+.github/workflows/convert-markdown-to-pdf.yml @gmaison
+.github/workflows/protect-workflow-files.yml @gmaison
 * @gmaison
