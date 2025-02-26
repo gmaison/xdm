@@ -121,7 +121,6 @@ jobs:
             --toc \
             --toc-depth=3 \
             --section-divs \
-            --identifier-prefix=section- \
             --number-sections \
             --highlight-style=tango \
             --variable=colorlinks=true \
