@@ -2,29 +2,35 @@ name: Convert Markdown to PDF
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
     paths:
-      - 'Xano\ Development\ Methodology.md' # Trigger when any .md file is pushed
+      - 'Xano Development Methodology.md'  # Replace with the path to your specific markdown file
 
 jobs:
-  convert-to-pdf:
+  convert_md_to_pdf:
     runs-on: ubuntu-latest
-
+    
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
-
-      # Step 2: Convert Markdown to PDF
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      
+      - name: Install md-to-pdf
+        run: npm install -g md-to-pdf
+      
       - name: Convert Markdown to PDF
-        uses: cornelius/action-md-as-pdf@main
-        with:
-          markdown_dir: docs # Directory containing your Markdown files
-          pdf_file: output.pdf # Name of the resulting PDF file
-
-      # Step 3: Upload the generated PDF as an artifact
-      - name: Upload PDF Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Generated PDF
-          path: "Xano\ Development\ Methodology.md"
+        run: |
+          md-to-pdf "Xano Development Methodology.md"  # Replace with your markdown file path
+      
+      - name: Commit and push PDF
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add "Xano Development Methodology.pdf"   # Replace with the path where the PDF is generated
+          git commit -m "Convert markdown to PDF" || echo "No changes to commit"
+          git push
