@@ -17,6 +17,8 @@ I created this guide after observing that many no-code developers often lack cla
 
 While specifically tailored for Xano, the concepts outlined can also be adapted for other platforms and visual coding languages. The methodology draws inspiration from various established coding practices, aiming to provide a stable and effective foundation for professional development within Xano.
 
+I hope you'll enjoy it.
+
 ## Methodological principles 
 1. [Functional analysis](#functional-analysis)
 2. [Development principles](#development-principles)
