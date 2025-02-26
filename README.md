@@ -4,7 +4,7 @@
 
 # Xano Development Methodology Repository
 
-*Disclaimer: This is not the official **development methodology for Xano**. This an individual initiative, started by Guillaume Maison, to assist Xano Developers with a sustainable methodology to develop their backends and provide the smallest tech debt and the best practices for developing*.
+*Disclaimer: This is not the official **development methodology for Xano**. This an individual initiative, started by Guillaume Maison, to assist Xano Developers with a sustainable methodology to develop their backends and provide the smallest tech debt and the best practices for developing.*
 
 Welcome to the Xano Development Methodology repository. This project explores the principles of effective software development methodologies for Xano.
 
