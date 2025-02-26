@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'Xano Development Methodology.md'
+    workflow_dispatch: # This allows manual triggering
 
 jobs:
   convert_md_to_pdf:
