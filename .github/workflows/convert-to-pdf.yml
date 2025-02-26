@@ -1,4 +1,4 @@
-name: Convert Markdown to PDF
+name: Convert Xano Methodology to PDF
 
 on:
   push:
@@ -6,27 +6,42 @@ on:
       - main
     paths:
       - 'Xano Development Methodology.md'
-  workflow_dispatch: # This allows manual triggering
 
 jobs:
-  convert_md_to_pdf:
+  convert_to_pdf:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 1  # Just fetch the latest commit to speed things up
+
+      - name: Check if Xano methodology file changed
+        id: changed_files
+        run: |
+          # Check if file exists first
+          if [ -f "Xano Development Methodology.md" ]; then
+            echo "file=Xano Development Methodology.md" >> $GITHUB_OUTPUT
+            echo "files=[\"Xano Development Methodology.md\"]" >> $GITHUB_OUTPUT
+            echo "Xano Development Methodology file exists, proceeding with conversion"
+          else
+            echo "Xano Development Methodology file does not exist"
+            echo "files=[]" >> $GITHUB_OUTPUT
+            exit 0
+          fi
       
       - name: Setup Pandoc
+        if: steps.changed_files.outputs.files != '[]'
         uses: r-lib/actions/setup-pandoc@v2
-        with:
-          pandoc-version: '2.19.2'
       
-      - name: Install LaTeX
+      - name: Install minimal requirements for PDF generation
+        if: steps.changed_files.outputs.files != '[]'
         run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-xetex texlive-fonts-recommended texlive-plain-generic texlive-latex-extra
-      
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends texlive-xetex texlive-fonts-recommended texlive-plain-generic texlive-latex-base texlive-latex-recommended
+
       - name: Create custom styles
+        if: steps.changed_files.outputs.files != '[]'
         run: |
           cat > custom.css << 'EOL'
           body {
@@ -84,28 +99,34 @@ jobs:
             height: auto;
           }
           EOL
-      
-      - name: Convert Markdown to PDF
+
+      - name: Convert Xano methodology to PDF
+        if: steps.changed_files.outputs.files != '[]'
         run: |
-          pandoc "Xano Development Methodology.md" \
-            -o "Xano Development Methodology.pdf" \
+          FILE="Xano Development Methodology.md"
+          OUTPUT_PDF="${FILE%.md}.pdf"
+          
+          # Skip if file doesn't exist
+          if [ ! -f "$FILE" ]; then
+            echo "File $FILE no longer exists, skipping"
+            exit 0
+          fi
+          
+          echo "Converting $FILE to PDF using Pandoc"
+          pandoc "$FILE" \
+            -f markdown \
+            -t pdf \
+            -o "$OUTPUT_PDF" \
             --pdf-engine=xelatex \
             --toc \
-            --toc-depth=3 \
-            --highlight-style=tango \
             --variable=colorlinks=true \
             --variable=linkcolor=blue \
-            --variable=urlcolor=blue \
-            --variable=toccolor=blue \
-            --variable=citecolor=blue \
             --variable=geometry:margin=1in \
             --variable=mainfont="DejaVu Serif" \
-            --variable=sansfont="DejaVu Sans" \
-            --variable=monofont="DejaVu Sans Mono" \
-            --variable=fontsize=11pt \
             --css=custom.css
-      
+
       - name: Create Pull Request
+        if: steps.changed_files.outputs.files != '[]'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
