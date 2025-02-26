@@ -183,6 +183,7 @@ Principles:
 ## Nomenclature principles
 
 Consistent and clear naming conventions help maintain code clarity, reduce confusion, and promote collaboration across development teams. The following principles should be adhered to for variables, functions, and triggers.
+
 1. [Variables](#variables)
 2. [Functions](#functions)
 3. [Triggers](#triggers)
@@ -496,7 +497,7 @@ In software development, design patterns provide a structured approach to solvin
 1. [**Principles**](#principles)
 2. [**Error Handling**](#error-handling)
 3. [**Response Handling**](#response-handling)
-4. [**Endpoint generic design pattern **](#endpoint-generic-design-pattern)
+4. [**Endpoint generic design pattern**](#endpoint-generic-design-pattern)
 
 ### Principles
 
