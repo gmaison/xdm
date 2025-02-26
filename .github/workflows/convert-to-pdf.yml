@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - 'Xano Development Methodology.md'
-  workflow_dispatch: # This allows manual triggering
 
 jobs:
   convert_md_to_pdf:
@@ -30,11 +29,12 @@ jobs:
         run: |
           pandoc "Xano Development Methodology.md" -o "Xano Development Methodology.pdf" --pdf-engine=xelatex
       
-      - name: Commit and push PDF
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add "Xano Development Methodology.pdf"
-          git commit -m "Convert markdown to PDF" || echo "No changes to commit"
-          # Push changes using the GitHub token for authentication
-          git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:main
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Convert markdown to PDF"
+          title: "Convert Markdown to PDF"
+          body: "Automatically generated PDF from markdown file"
+          branch: pdf-generation
+          base: main
