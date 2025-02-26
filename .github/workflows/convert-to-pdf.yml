@@ -13,17 +13,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+        with:
+          fetch-depth: 0  # Fetch all history to properly diff
+
       - name: Check if Xano methodology file changed
         id: changed_files
         run: |
-          # Check if our specific file changed
-          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "Xano Development Methodology.md"; then
-            echo "Xano Development Methodology file was modified"
+          # Check if file exists first
+          if [ -f "Xano Development Methodology.md" ]; then
             echo "file=Xano Development Methodology.md" >> $GITHUB_OUTPUT
             echo "files=[\"Xano Development Methodology.md\"]" >> $GITHUB_OUTPUT
+            echo "Xano Development Methodology file exists, proceeding with conversion"
           else
-            echo "Xano Development Methodology file was not modified"
+            echo "Xano Development Methodology file does not exist"
             echo "files=[]" >> $GITHUB_OUTPUT
             exit 0
           fi
@@ -41,6 +43,7 @@ jobs:
           sudo apt-get install -y texlive-xetex texlive-fonts-recommended texlive-plain-generic texlive-latex-extra
 
       - name: Create custom styles
+        if: steps.changed_files.outputs.files != '[]'
         run: |
           cat > custom.css << 'EOL'
           body {
@@ -133,6 +136,7 @@ jobs:
             --css=custom.css
 
       - name: Create Pull Request
+        if: steps.changed_files.outputs.files != '[]'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
