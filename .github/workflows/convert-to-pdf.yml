@@ -38,7 +38,7 @@ jobs:
         if: steps.changed_files.outputs.files != '[]'
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends texlive-xetex texlive-fonts-recommended texlive-plain-generic texlive-latex-base texlive-latex-recommended
+          sudo apt-get install -y --no-install-recommends texlive-xetex texlive-fonts-recommended texlive-plain-generic texlive-latex-base texlive-latex-recommended lmodern
 
       - name: Create custom styles
         if: steps.changed_files.outputs.files != '[]'
