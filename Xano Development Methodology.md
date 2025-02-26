@@ -28,6 +28,7 @@ I hope you'll enjoy it.
 5. [Development and Tests](#development-and-tests)
 6. [Production release](#production-release)
 
+
 ### Functional analysis 
 
 Functional analysis is a critical step for defining what to develop while avoiding both under-implementation due to insufficient feature analysis and over-design. Properly designed algorithms help streamline development and ensure clarity before coding begins. 
