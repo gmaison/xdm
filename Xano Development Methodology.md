@@ -20,12 +20,14 @@ While specifically tailored for Xano, the concepts outlined can also be adapted 
 I hope you'll enjoy it.
 
 ## Methodological principles 
+
 1. [Functional analysis](#functional-analysis)
 2. [Development principles](#development-principles)
 3. [Implementation](#implementation)
-4. [Analysis \<-\> Implementation](#analysis-%5C-%5C-implementation)
+4. [Analysis and Implementation](#analysis-and-implementation)
 5. [Development and Tests](#development-and-tests)
 6. [Production release](#production-release)
+
 ### Functional analysis 
 
 Functional analysis is a critical step for defining what to develop while avoiding both under-implementation due to insufficient feature analysis and over-design. Properly designed algorithms help streamline development and ensure clarity before coding begins.
@@ -121,7 +123,7 @@ A clear and structured implementation phase is crucial for maintaining the integ
 * If the additional information consists of multiple records related to the main record (e.g., child records), use Add-ons to manage the data relationship clearly.  
 * These principles ensure that the code remains modular, maintainable, and consistent with the designed architecture, making it easier to debug, extend, and collaborate on across   development teams.
 
-### Analysis \<-\> Implementation
+### Analysis and Implementation
 
 A solid approach to analysis and implementation ensures continuous improvement and effective collaboration between technical and business teams. The following principles highlight the importance of validation and iteration in the development process.
 
