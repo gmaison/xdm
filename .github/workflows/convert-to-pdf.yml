@@ -114,12 +114,14 @@ jobs:
           
           echo "Converting $FILE to PDF using Pandoc"
           pandoc "$FILE" \
-            -f markdown \
+            -f gfm \
             -t pdf \
             -o "$OUTPUT_PDF" \
             --pdf-engine=xelatex \
             --toc \
             --toc-depth=3 \
+            --section-divs \
+            --atx-headers \
             --highlight-style=tango \
             --variable=colorlinks=true \
             --variable=linkcolor=blue \
