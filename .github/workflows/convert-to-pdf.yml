@@ -1,16 +1,30 @@
-name: Convert to PDF
+name: Convert Markdown to PDF
+
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'Xano\ Development\ Methodology.md' # Trigger when any .md file is pushed
+
 jobs:
-  convert:
+  convert-to-pdf:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - uses: docker://pandoc/latex:2.9
-      with:
-        args: "Xano\ Development\ Methodology.md -o Xano\ Development\ Methodology.pdf"
-    - uses: actions/upload-artifact@v3
-      with:
-        name: PDF
-        path: Xano\ Development\ Methodology.pdf
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Convert Markdown to PDF
+      - name: Convert Markdown to PDF
+        uses: cornelius/action-md-as-pdf@main
+        with:
+          markdown_dir: docs # Directory containing your Markdown files
+          pdf_file: output.pdf # Name of the resulting PDF file
+
+      # Step 3: Upload the generated PDF as an artifact
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Generated PDF
+          path: "Xano\ Development\ Methodology.md"
