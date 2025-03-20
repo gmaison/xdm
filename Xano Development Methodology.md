@@ -363,63 +363,40 @@ Example:
 
 It exists different types of functions:
 
-1. [**Apicalls**](#apicalls) 
-2. [**Helpers**](#helpers)
-3. [**DBs**](#dbs)
-4. [**Validators**](#validators)
-5. [**Orchestrators**](#orchestrators)
-6. [**Services**](#services)
-7. [**Errors**](#errors)
+1. [Processors](#processors)
+2. [Validators](#validators)
+3. [Orchestrators](#orchestrators)
+4. [Services](#services)
+5. [Apicalls](#apicalls)
+6. [Helpers](#helpers)
+7. [DBs](#dbs)
+8. [Errors](#errors)
 
-### Apicalls
+### Processors
+**Processors (\_processor\_)** are high-level functions that coordinate the entire workflow of a business process or use case, sitting at the top of the function hierarchy.
 
-**Apicalls (apicall\_)** have a well-defined purpose: they act as a transport layer for a service not managed by the application.
+What they have to do:
 
-For example, all third-party tools accessible via an API must have helpers functions. Their sole purpose is to transmit a correctly formatted payload to an API URL.
-
-What they need to do:
-
-* they need to manage their API URL themselves, as well as potential tokens  
-* they need to know which HTTP VERB to use and configure the API call  
-* they must execute the call and return the full result, without handling errors. This is because an API error is not always blocking.
-
-What they must not do
-
-* they must not build the payload. Each endpoint is perfectly identified and the various parameters of the call must be found in the function inputs.  
-* they must not handle errors in the API call response (HTTP 4xx, 5xx, etc. errors)  
-* they must not contain any functional logic other than that relating to this transport layer. For example, if the definition of the API call is stored in a database, it will be able to access the elements of this definition in the database.
-
-### Helpers
-
-**Helpers (helper\_)** are functions that perform specific tasks and are reusable. Their purpose is to simplify sometimes complex tasks and reduce code duplication. This makes the code easier to read and maintain. This is the principle of weak coupling.
-
-What they have to do
-
-* they must manipulate input information and return the result of these manipulations  
-* They must do one thing and one thing only.  
-* they must be generic and reusable
+- They must coordinate the complete flow of a use case, from input validation to response delivery
+- They must handle both technical and business validation through validators
+- They must delegate business logic execution to orchestrators
+- They must manage error handling across the entire process flow
+- They must ensure consistent response formatting
 
 What they must not do:
 
-* they must not contain business logic  
-* they must not make external API calls  
-* they must not access the database \- except if they need database information to perform their task  
-* they must not handle complex error scenarios
+- They must not implement business logic directly (contained in orchestrators)
+- They must not implement low-level operations (those contained in helpers, services, or db functions)
+- They must not perform direct database operations
 
-### DBs
+#### Relationship with other functions
 
-dbs (\_db\_) are functions that only manage access to database data. They perform direct data access operations. 
+In the function hierarchy, processors:
 
-What they must do:
-
-* They must check that the data used for this access is correct (not null, id exists in the database, ...)  
-* They must only execute the data access.  
-* They must stop all data processing (precondition) when they encounter an error. 
-
-What they must not do:
-
-* They must not transform the data  
-* They must not contain any business logic
+- Call validators to ensure input correctness
+- Call orchestrators to execute business rules and logic
+- Manage the overall error handling strategy
+- Coordinate the proper response formatting
 
 ### Validators
 
@@ -472,6 +449,56 @@ What they have to do:
 What they must not do
 
 * they must not implement business rules and logic
+
+### Apicalls
+
+**Apicalls (apicall\_)** have a well-defined purpose: they act as a transport layer for a service not managed by the application.
+
+For example, all third-party tools accessible via an API must have helpers functions. Their sole purpose is to transmit a correctly formatted payload to an API URL.
+
+What they need to do:
+
+* they need to manage their API URL themselves, as well as potential tokens  
+* they need to know which HTTP VERB to use and configure the API call  
+* they must execute the call and return the full result, without handling errors. This is because an API error is not always blocking.
+
+What they must not do
+
+* they must not build the payload. Each endpoint is perfectly identified and the various parameters of the call must be found in the function inputs.  
+* they must not handle errors in the API call response (HTTP 4xx, 5xx, etc. errors)  
+* they must not contain any functional logic other than that relating to this transport layer. For example, if the definition of the API call is stored in a database, it will be able to access the elements of this definition in the database.
+
+### Helpers
+
+**Helpers (helper\_)** are functions that perform specific tasks and are reusable. Their purpose is to simplify sometimes complex tasks and reduce code duplication. This makes the code easier to read and maintain. This is the principle of weak coupling.
+
+What they have to do
+
+* they must manipulate input information and return the result of these manipulations  
+* They must do one thing and one thing only.  
+* they must be generic and reusable
+
+What they must not do:
+
+* they must not contain business logic  
+* they must not make external API calls  
+* they must not access the database \- except if they need database information to perform their task  
+* they must not handle complex error scenarios
+
+### DBs
+
+dbs (\_db\_) are functions that only manage access to database data. They perform direct data access operations. 
+
+What they must do:
+
+* They must check that the data used for this access is correct (not null, id exists in the database, ...)  
+* They must only execute the data access.  
+* They must stop all data processing (precondition) when they encounter an error. 
+
+What they must not do:
+
+* They must not transform the data  
+* They must not contain any business logic
 
 ### Errors
 
@@ -538,15 +565,17 @@ Consistent response management improves the reliability of API interactions.
 ### Endpoint generic design pattern
 
 * Endpoint  
-  * calls an \_orch\_() function  
+  * calls a **\_processor\_()** function  
     * transform input parameter as an array  
-    * calls for one or many \*\_validator\_\*() functions  
+    * calls for one or many **\_validator\_()** functions  
 	    * for each validator function, handle error codes
-    * proceeds to business data operations & manipulations according to functional rules prior to db operations (through orchestrators)
-    * calls one or more \*\_db\_\*() functions  
-      * does a bulk operation  
-    * proceeds to business data operations & manipulations according to functional rules after db operations (through orchestrators)
-    * calls \*\_db\_select() as a result
+	* calls a **\_orch\_()** function to orchestrate the business logic & technical operations 
+	    * proceeds to business data operations & manipulations according to functional rules prior to db operations (through other orchestrators)
+	      ***warning**: an **\_orch\_()** function should never call a **\_processor\_()** function to prevent circular dependency.
+	    * calls one or more **\_db\_()** functions  
+	    * does a bulk operation  
+	    * proceeds to business data operations & manipulations according to functional rules after db operations (through orchestrators)
+	    * calls **\_db\_select()** as a result
 
 ## Database Optimization
 
